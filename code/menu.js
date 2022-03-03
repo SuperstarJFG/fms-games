@@ -4,7 +4,7 @@ function setup() {
 
 
 function draw() {
-  background(orange);
+  background('orange');
 
   fill(200);
   circle(100,100,100)
