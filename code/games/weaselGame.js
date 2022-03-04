@@ -1,3 +1,3 @@
-function testEllipse() {
-    ellipse(100,200,300,400)
+function drawGame3() {
+    background('green')
 }
