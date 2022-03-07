@@ -1,6 +1,10 @@
 function setup() {
   createCanvas(800, 600)
   setupMenu()
+  setupGame1()
+  setupGame2()
+  setupGame3()
+  setupBackButton()
 }
 
 function setupMenu() {
@@ -10,16 +14,19 @@ function setupMenu() {
   button1 = createButton('Thread the Needle Game')
   button1.position(50,150)
   button1.size(gameButtonLength,gameButtonHeight)
+  button1.style('background-color:red')
   button1.mouseClicked(startGame1)
   
   button2 = createButton('Type the Story Game')
   button2.position(50,300)
   button2.size(gameButtonLength,gameButtonHeight)
+  button2.style('background-color:blue')
   button2.mouseClicked(startGame2)
   
   button3 = createButton('Pop the Weasel Game')
   button3.position(50,450)
   button3.size(gameButtonLength,gameButtonHeight)
+  button3.style('background-color:green')
   button3.mouseClicked(startGame3)
 }
 
@@ -28,26 +35,12 @@ game1 = false
 game2 = false
 game3 = false
 
-function startGame1(){
-  game1 = true
-  menu = false
-}
-function startGame2(){
-  game2 = true
-  menu = false
-}
-function startGame3(){
-  game3 = true
-  menu = false
-}
-
 function draw() {
   // change scenes
   if (menu) {
     drawMenu()
   }
   if (!menu) {
-    hideMenu()
     drawBackButton()
   }
   if (game1) {
@@ -60,8 +53,8 @@ function draw() {
     drawGame3()
   }
   
-  // draw cursor
-  fill('blue')
+  // draw test cursor
+  fill('white')
   circle(mouseX,mouseY,10)
 
   // Trying to get a greeting to be displayed in the game, still being worked on
@@ -91,12 +84,30 @@ function drawMenu() {
   text('High Scores',555,55,195,495)
 }
 
-function hideMenu(){
+function clearMenu(){
   button1.hide()
   button2.hide()
   button3.hide()
 }
 
-function drawBackButton() {
+function setupBackButton(){
+  backButton = createButton('← Back')
+  backButton.position(0,0)
+  backButton.mouseClicked(backButtonClicked)
+  backButton.hide()
+}
 
+function drawBackButton() {
+  backButton.show()
+}
+
+function backButtonClicked(){
+  clearGame1()
+  clearGame2()
+  clearGame3()
+  game1 = false
+  game2 = false
+  game3 = false
+  menu = true
+  backButton.hide()
 }
