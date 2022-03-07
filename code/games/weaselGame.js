@@ -14,8 +14,11 @@ function startGame3(){
 function drawGame3() {
     background('green')
     textSize(40)
+    textFont()
     fill('white')
-    text("Game 3 Here",120,50)
+    text("Pop the Weasel",200,50)
+    textSize(20)
+    text('Score: 0, High Score: 0',200,75)
 }
 
 // happens when back button clicked

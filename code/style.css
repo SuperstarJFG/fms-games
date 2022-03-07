@@ -8,17 +8,16 @@ canvas {
 }
 
 button {
-  border-radius: 10px;
   border: 5px solid white;
   background-color: orange;
   color:white;
-  font-size: 25px;
+
+  border-radius: 12px;
+  font-size: 35px;
 }
 
 button:hover {
-  background-color:white;
-  color:orange;
-  -webkit-text-stroke: 1px white;
+  border: 9px solid white;
 }
 
 button:active {

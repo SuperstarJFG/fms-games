@@ -14,8 +14,11 @@ function startGame2(){
 function drawGame2() {
     background('blue')
     textSize(40)
+    textFont()
     fill('white')
-    text("Game 2 Here",120,50)
+    text("Type the Story",200,50)
+    textSize(20)
+    text('Score: 0, High Score: 0',200,75)
 }
 
 // happens when back button clicked

@@ -52,10 +52,6 @@ function draw() {
   if (game3) {
     drawGame3()
   }
-  
-  // draw test cursor
-  fill('white')
-  circle(mouseX,mouseY,10)
 
   // Trying to get a greeting to be displayed in the game, still being worked on
   // fontPacifico = pygame.font.SysFont('Pacifico', 25, false, false)
@@ -70,20 +66,41 @@ function drawMenu() {
   button2.show()
   button3.show()
 
-  // "Welcome Player!" message
-  textSize(40)
+  // "Welcome Player!" title
+  textSize(50)
   fill('white')
-  text("Welcome Player!",120,100)  
+  text("Welcome Player!",85,80)  
 
-  // Score board for the games
+  // draw scoreboard bg
+  fill('orange')
+  stroke('white')
+  strokeWeight(10)
+  rect(550,80,200,500)
+  strokeWeight(0)
+  // draw scoreboard title
   fill('white')
-  rect(550,50,200,500)
-  
-  fill('black')
-  textSize(34)
-  text('High Scores',555,55,195,495)
+  textSize(32)
+  textAlign(CENTER,CENTER)
+  text('High Scores',650,105)
+  // draw game 1 score bg
+  fill('red')
+  rect(555,125,190,150)
+  // draw game 2 score bg
+  fill('blue')
+  rect(555,275,190,150)
+  // draw game 3 score bg
+  fill('green')
+  rect(555,425,190,150)
+  // print scores
+  fill('white')
+  textSize(50)
+  text('32',650,200)
+  text('16',650,350)
+  text('5',650,500)
+  textAlign(LEFT) // resets alignment
 }
 
+// happens when a game is selected
 function clearMenu(){
   button1.hide()
   button2.hide()
@@ -92,7 +109,8 @@ function clearMenu(){
 
 function setupBackButton(){
   backButton = createButton('← Back')
-  backButton.position(0,0)
+  backButton.position(2,2)
+  backButton.size(175,70)
   backButton.mouseClicked(backButtonClicked)
   backButton.hide()
 }

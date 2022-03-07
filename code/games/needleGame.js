@@ -12,10 +12,13 @@ function startGame1(){
 
 // constant drawing of game when active
 function drawGame1() {
-    background('gray')
+    background('red')
     textSize(40)
+    textFont()
     fill('white')
-    text("Game 1 Here",120,50)
+    text("Thread the Needle",200,50)
+    textSize(20)
+    text('Score: 0, High Score: 0',200,75)
 }
 
 // happens when back button clicked
