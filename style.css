@@ -1,0 +1,25 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+button {
+  border: 5px solid white;
+  background-color: orange;
+  color:white;
+
+  border-radius: 12px;
+  font-size: 35px;
+}
+
+button:hover {
+  border: 9px solid white;
+}
+
+button:active {
+  transform: translateY(5px);
+}
