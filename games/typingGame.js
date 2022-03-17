@@ -1,3 +1,12 @@
+/*
+to-do:
+
+score
+high score
+put square around next key with special case for space
+all caps font
+*/
+
 // one-time initial setup
 function setupGame2(){
     highScore2=0 // high score for game 2
@@ -22,18 +31,33 @@ function startGame2(){
             story+=originalStory.charAt(i)
         }
     }
+
+    refreshArrow()
     
-    insertArrow()
+    // get last blank index
+    lastBlank = 0
+    for (i = story.length; i >= 0; i--) {
+        if (story.charAt(i) == '_') {
+            lastBlank = i-1
+            return
+        }
+    }
 }
 
 // happens when any key is pressed
 function keyPressed() {
     if (key == originalStory.charAt(currentBlank)) {
-        correctCharTyped()
+        if (currentBlank != lastBlank) {
+            correctCharTyped()
+        }
+        else {
+            story = originalStory
+            altStory = originalStory
+        }
     }
 }
 
-function insertArrow() {
+function refreshArrow() {
     // insert ← after first _ in story
     let i=0
     while (story.charAt(i) != '←') {
@@ -51,7 +75,8 @@ function insertArrow() {
 function correctCharTyped() {
     // replace 
     story = story.replace('_',originalStory.charAt(currentBlank))
-    insertArrow()
+    story = story.replace('←','')
+    refreshArrow()
 }
 
 // function to insert text into existing string
@@ -67,10 +92,10 @@ function drawGame2() {
     fill('white')
     text("Type the Story",200,50)
     textSize(20)
-    text('Score: '+score2+', High Score: '+highScore2,200,75)
+    text(`Score: ${score2}, High Score: ${highScore2}`,200,75)
     
     // print story
-    textSize(30)
+    textSize(20)
     textAlign(CENTER,CENTER)
     if (millis()%500 < 250) { // alternates every 1/4 second
         text(story,400,300)
@@ -78,6 +103,9 @@ function drawGame2() {
     else {
         text(altStory,400,300)
     }
+
+    // print next key
+    text(`Next Key: ${originalStory.charAt(currentBlank)}`,400,500)
     textAlign(LEFT) // resets alignment
 }
 
