@@ -21,7 +21,7 @@ function drawGame1() {
     textSize(20)
     text('Score: '+score1+', High Score: '+highScore1,200,75)
 
-    // test line
+    // draw test line
     stroke(126)
     strokeWeight(10)
     line(30, 20, 85, 700)
