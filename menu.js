@@ -94,9 +94,9 @@ function drawMenu() {
   // print scores
   fill('white')
   textSize(50)
-  text('32',650,200)
-  text('16',650,350)
-  text('5',650,500)
+  text(highScore1,650,200)
+  text(highScore2,650,350)
+  text(highScore3,650,500)
   textAlign(LEFT) // resets alignment
 }
 
