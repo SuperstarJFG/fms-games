@@ -19,7 +19,7 @@ function drawGame1() {
     fill('white')
     text("Thread the Needle",200,50)
     textSize(20)
-    text('Score: '+score1+', High Score: '+highScore1,200,75)
+    text('Score: '+score1+', High Score: '+highScore1,200,100)
 
     // draw test line
     stroke(126)

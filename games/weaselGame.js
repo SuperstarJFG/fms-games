@@ -19,7 +19,7 @@ function drawGame3() {
     fill('white')
     text("Pop the Weasel",200,50)
     textSize(20)
-    text('Score: '+score3+', High Score: '+highScore3,200,75)
+    text('Score: '+score3+', High Score: '+highScore3,200,100)
 }
 
 // happens when back button clicked
