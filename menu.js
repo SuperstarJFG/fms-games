@@ -71,7 +71,7 @@ function drawMenu() {
   fill('white')
   text("Welcome Player!",85,80)  
 
-  // draw scoreboard bg
+  // draw scoreboard background
   fill('orange')
   stroke('white')
   strokeWeight(10)

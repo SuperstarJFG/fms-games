@@ -1,24 +1,26 @@
 /*
 to-do:
 
+make amount of blanks consistent
 score
 high score
-put square around next key with special case for space
 all caps font
+put square around next key with special case for space
 */
 
-// one-time initial setup
+// happens only once when program starts
 function setupGame2(){
     highScore2=0 // high score for game 2
-    startGame2() // starts game 2 when program starts (for testing)
+    // startGame2() // starts game 2 when program starts (for testing)
 }
 
-// happens every time game starts
+// happens once every time typing game starts
 function startGame2(){
     game2 = true
     menu = false
     clearMenu()
-    score2=0 // current score for game 3
+    score2 = millis() // resets current time for game 3
+    blanks = 0
 
     // create story with random blanks
     originalStory = 'the itsy bitsy spider crawled up the water spout.\ndown came the rain, and washed the spider out.\nout came the sun, and dried up all the rain,\nand the itsy bitsy spider went up the spout again.'
@@ -26,6 +28,7 @@ function startGame2(){
     for (i = 0; i < originalStory.length; i++) {
         if ((Math.random() > .9) && originalStory.charAt(i) != '\n') {
             story+='_'
+            blanks++
         }
         else {
             story+=originalStory.charAt(i)
@@ -84,7 +87,7 @@ function insert(str, index, value) {
     return str.substr(0, index) + value + str.substr(index);
 }
 
-// constant drawing of game when active
+// happens every frame when typing game active
 function drawGame2() {
     background('blue')
     textSize(40)
@@ -92,7 +95,7 @@ function drawGame2() {
     fill('white')
     text("Type the Story",200,50)
     textSize(20)
-    text(`Score: ${score2}, High Score: ${highScore2}`,200,75)
+    text(`Time: ${score2}, Best Time: ${highScore2}, Blanks: ${blanks}`,200,75)
     
     // print story
     textSize(20)
@@ -105,7 +108,13 @@ function drawGame2() {
     }
 
     // print next key
-    text(`Next Key: ${originalStory.charAt(currentBlank)}`,400,500)
+    if (originalStory.charAt(currentBlank) == ' ') {
+        text(`Next Key: space`,400,500)
+    }
+    else {
+        text(`Next Key: ${originalStory.charAt(currentBlank)}`,400,500)
+    }
+    
     textAlign(LEFT) // resets alignment
 }
 

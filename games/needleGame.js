@@ -1,17 +1,17 @@
-// one-time initial setup
+// happens only once when program starts
 function setupGame1(){
     highScore1=0 // high score for game 1
 }
 
-// happens every time game starts
+// happens once every time needle game starts
 function startGame1(){
     game1 = true
     menu = false
     clearMenu()
-    score1=0 // current score for game 3
+    score1 = 0 // current score for game 3
 }
 
-// constant drawing of game when active
+// happens every frame when needle game active
 function drawGame1() {
     background('red')
     textSize(40)

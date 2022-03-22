@@ -1,9 +1,9 @@
-// one-time initial setup
+// happens only once when program starts
 function setupGame3(){
     highScore3=0 // high score for game 3
 }
 
-// happens every time game starts
+// happens once every time weasel game starts
 function startGame3(){
     game3 = true
     menu = false
@@ -11,7 +11,7 @@ function startGame3(){
     score3=0 // current score for game 3
 }
 
-// constant drawing of game when active
+// happens every frame when weasel game active
 function drawGame3() {
     background('green')
     textSize(40)
