@@ -26,6 +26,7 @@ function drawGame3() {
 function clearGame3(){
     
 }
+<<<<<<< Updated upstream
 function weaselbox(){
     fill('orange')
     rect(50,120,300,220)
@@ -41,3 +42,6 @@ function weaselbox(){
     circle(315,225,50)
     circle(260,300,50)
 }
+=======
+
+>>>>>>> Stashed changes
