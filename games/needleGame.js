@@ -92,5 +92,5 @@ function printInstruction ()
 
 // happens when back button clicked
 function clearGame1(){
-    
+    clearStartButton()
 }
