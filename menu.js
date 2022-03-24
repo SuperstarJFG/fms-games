@@ -1,9 +1,9 @@
-menu = true
-game1 = false
-game2 = false
-game3 = false
+function preload() {
+  partyConfetti = loadFont('assets/partyConfetti.ttf')
+}
 
 function setup() {
+  textFont(partyConfetti)
   createCanvas(800, 600)
   setupMenu()
   setupGame1()
@@ -100,7 +100,14 @@ function drawMenu() {
   fill('white')
   textSize(50)
   text(highScore1,650,200)
-  text(highScore2,650,350)
+  textSize(30)
+  if (highScore2 == 0) {
+    text(`Not Yet\nPlayed`,650,350)
+  }
+  else {
+    text(`Best Time:\n${highScore2} Seconds`,650,350)
+  }
+  textSize(50)
   text(highScore3,650,500)
   textAlign(LEFT) // resets alignment
 }
