@@ -1,8 +1,10 @@
-
+//------------Variables for Game----------------------------------/
 let HighScore;
 let startButton;
 let gameRun = false
-let resetLine = false
+let activatePlayer = false
+
+
 
 // happens only once when program starts
 function setupGame1(){
@@ -32,7 +34,7 @@ function startGame1(){
     menu = false
     clearMenu()
 
-    startButton.show()
+    startButton.show(clearStartButton)
     score1 = 0
     
 
@@ -55,20 +57,21 @@ function drawGame1() {
     {
         drawThread()
         printInstruction()
+        startGame()
+    }// FIX-ME: breifly displays instructions and disappears
+
+    if (activatePlayer == true)
+    {
+        playerControl()
     }
 
+    
 
   
 
 }
 
-
-function clearStartButton ()
-{
-    startButton.hide()
-    gameRun = true
-}
-
+//------------------Creates the instructions and thread-------------//
 function drawThread () 
 {
     stroke(0)
@@ -77,22 +80,52 @@ function drawThread ()
     strokeWeight(0)
 }
 
-function playerControl()
-{
-
-
-    
-    start1y = mouseY
-}
-
 function printInstruction () 
 {
     stroke('white')
     text('Feed the thread through the needle!', 200, 200)
+    text('Click again to control the thread!', 218, 220)
+}
+//--------------------------Player Functions------------------------//
+function playerControl()
+{
+    if(mouseIsPressed === true)
+    {
+        if(mouseButton === LEFT)
+        {
+            stroke(0)
+            strokeWeight(7)
+            line(0, mouseY, mouseX, mouseY);
+            strokeWeight(0)
+        }
+
+    } else {
+        stroke(0)
+        strokeWeight(7)
+        line(start1x, start1y, start2x, start2y)
+        strokeWeight(0)
+
+    }
+    
 }
 
+function startGame ()
+{
+    if (mouseIsPressed === true)
+    {
+        activatePlayer = true
+        gameRun = false
+    }
+}
+//------------------------Button Functions--------------------------//
+function clearStartButton ()
+{
+    startButton.hide()
+    gameRun = true
+}
 
-// happens when back button clicked
 function clearGame1(){
-    GameRun = false
-}
+    gameRun = false
+    activatePlayer = false
+}// happens when back button clicked
+
