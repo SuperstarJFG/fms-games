@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 let HighScore;
 let startButton;
 let gameRun = false
@@ -23,6 +24,11 @@ function setupGame1(){
     startButton.mousePressed(clearStartButton)
     startButton.hide();
 
+=======
+// happens only once when program starts
+function setupGame1(){
+    highScore1=0 // high score for game 1
+>>>>>>> d6dd91c0d8212760623457a3bfd1467520480fec
 }
 
 // happens once every time needle game starts
@@ -30,9 +36,13 @@ function startGame1(){
     game1 = true
     menu = false
     clearMenu()
+<<<<<<< HEAD
     score1 = 0
     startButton.show()
     // current score for game 3
+=======
+    score1 = 0 // current score for game 3
+>>>>>>> d6dd91c0d8212760623457a3bfd1467520480fec
 }
 
 // happens every frame when needle game active
@@ -43,6 +53,7 @@ function drawGame1() {
     fill('white')
     text("Thread the Needle",200,50)
     textSize(20)
+<<<<<<< HEAD
     text('Score: '+score1+', High Score: '+highScore1,200,75)
 
     // draw test line
@@ -56,6 +67,15 @@ function drawGame1() {
         drawThread()
         
     }
+=======
+    text('Score: '+score1+', High Score: '+highScore1,200,100)
+
+    // draw test line
+    stroke(126)
+    strokeWeight(10)
+    line(30, 20, 85, 700)
+    strokeWeight(0)
+>>>>>>> d6dd91c0d8212760623457a3bfd1467520480fec
 }
 
 function gameLineReset () 
