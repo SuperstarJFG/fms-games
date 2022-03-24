@@ -1,9 +1,9 @@
-// happens only once when program starts
+// one-time initial setup
 function setupGame3(){
     highScore3=0 // high score for game 3
 }
 
-// happens once every time weasel game starts
+// happens every time game starts
 function startGame3(){
     game3 = true
     menu = false
@@ -11,7 +11,7 @@ function startGame3(){
     score3=0 // current score for game 3
 }
 
-// happens every frame when weasel game active
+// constant drawing of game when active
 function drawGame3() {
     background('green')
     textSize(40)
@@ -25,4 +25,19 @@ function drawGame3() {
 // happens when back button clicked
 function clearGame3(){
     
+}
+function weaselbox(){
+    fill('orange')
+    rect(50,120,300,220)
+    fill('black')
+    circle(100,150,50)
+    circle(85,225,50)
+    circle(100,300,50)
+    circle(180,150,50)
+    circle(165,225,50)
+    circle(180,300,50)
+    circle(160,150,50)
+    circle(245,225,50)
+    circle(315,225,50)
+    circle(260,300,50)
 }
