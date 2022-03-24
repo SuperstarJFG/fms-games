@@ -1,3 +1,8 @@
+menu = true
+game1 = false
+game2 = false
+game3 = false
+
 function setup() {
   createCanvas(800, 600)
   setupMenu()
@@ -71,7 +76,7 @@ function drawMenu() {
   fill('white')
   text("Welcome Player!",85,80)  
 
-  // draw scoreboard bg
+  // draw scoreboard background
   fill('orange')
   stroke('white')
   strokeWeight(10)
@@ -94,9 +99,9 @@ function drawMenu() {
   // print scores
   fill('white')
   textSize(50)
-  text('32',650,200)
-  text('16',650,350)
-  text('5',650,500)
+  text(highScore1,650,200)
+  text(highScore2,650,350)
+  text(highScore3,650,500)
   textAlign(LEFT) // resets alignment
 }
 
