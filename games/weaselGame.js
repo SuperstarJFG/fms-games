@@ -20,12 +20,34 @@ function drawGame3() {
     text("Pop the Weasel",200,50)
     textSize(20)
     text('Score: '+score3+', High Score: '+highScore3,200,75)
+    fill('orange')
+    rect(90,230,600,320)
+    fill('black')
+    circle(150,290,70)
+    circle(330,290,70)
+    circle(480,290,70)
+    circle(620,290,70)
+    circle(230,390,70)
+    circle(400,390,70)
+    circle(560,390,70)
+    circle(150,490,70)
+    circle(330,490,70)
+    circle(480,490,70)
+    circle(620,490,70)
 }
-
+function draw{
+    if(mouseIsPressed){
+        fill('white')
+        circle(mouseX,mouseY,70)
+    }
+    else{
+        fill('black')
+    }
+ }
 // happens when back button clicked
 function clearGame3(){
-    
 }
+<<<<<<< Updated upstream
 function weaselbox(){
     fill('orange')
     rect(50,120,300,220)
@@ -41,3 +63,5 @@ function weaselbox(){
     circle(315,225,50)
     circle(260,300,50)
 }
+=======
+>>>>>>> Stashed changes
