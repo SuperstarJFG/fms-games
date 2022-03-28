@@ -35,7 +35,7 @@ function drawGame3() {
     circle(480,490,70)
     circle(620,490,70)
 }
-function draw{
+function circleMouse(){
     if(mouseIsPressed){
         fill('white')
         circle(mouseX,mouseY,70)
@@ -43,25 +43,11 @@ function draw{
     else{
         fill('black')
     }
- }
+    }
+
+
+}
+
 // happens when back button clicked
 function clearGame3(){
 }
-<<<<<<< Updated upstream
-function weaselbox(){
-    fill('orange')
-    rect(50,120,300,220)
-    fill('black')
-    circle(100,150,50)
-    circle(85,225,50)
-    circle(100,300,50)
-    circle(180,150,50)
-    circle(165,225,50)
-    circle(180,300,50)
-    circle(160,150,50)
-    circle(245,225,50)
-    circle(315,225,50)
-    circle(260,300,50)
-}
-=======
->>>>>>> Stashed changes
