@@ -1,5 +1,7 @@
 function preload() {
   partyConfetti = loadFont('assets/partyConfetti.ttf')
+  posSound = loadSound('assets/posSound.mp3')
+  negSound = loadSound('assets/negSound.mp3')
 }
 
 function setup() {
