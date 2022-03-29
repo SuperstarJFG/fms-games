@@ -102,11 +102,15 @@ function drawMenu() {
   text(highScore1,650,200)
   textSize(30)
   if (highScore2 == 0) {
-    text(`Not Yet\nPlayed`,650,350)
+    textForHighScore2 = `Not Yet\nPlayed`
   }
-  else {
-    text(`Best Time:\n${highScore2} Seconds`,650,350)
+  if (highScore2 == 1) {
+    textForHighScore2 = `Fastest Time:\n1 Second`
   }
+  if (highScore2 > 1) {
+    textForHighScore2 = `Fastest Time:\n${highScore2} Seconds`
+  }
+  text(textForHighScore2,650,350)
   textSize(50)
   text(highScore3,650,500)
   textAlign(LEFT) // resets alignment
