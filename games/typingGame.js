@@ -1,15 +1,17 @@
 /*
 to-do:
 
+add feedback for new fastest time
 add audio feedback
-add viseal feedback
-put square around next key with special cases
+put square around next key with special cases for space comma period
 add more stories
 */
 
 // happens only once when program starts
 function setupGame2(){
-    highScore2=0 // high score for game 2
+    highScore2 = 0 // high score for game 2
+    startPosFeedbackMillis = -9999
+    startNegFeedbackMillis = -9999
     // startGame2() // starts game 2 when program starts (for testing)
 }
 
@@ -25,8 +27,9 @@ function startGame2(){
     startMillis = Math.floor(millis())
 
     originalStories = ['the itsy bitsy spider crawled up the water spout.\ndown came the rain, and washed the spider out.\nout came the sun, and dried up all the rain,\nand the itsy bitsy spider went up the spout again.',
-    'the second story.',
-    'the third story.']
+        // ', . ., ., ,. ., ., ., ., ., ., ., ., ., .,the second story.',
+        // ',. ,. ,. ., ., ., ., ,. ,. ., ,. ,. ,. ., .the third story.',
+        ]
     originalStory = originalStories[Math.floor(Math.random()*originalStories.length)]
 
     // put random blanks in story
@@ -65,6 +68,10 @@ function keyPressed() {
             }
         }
     }
+    // if wrong char
+    if (!done2 && key != originalStory.charAt(currentBlank)) {
+        startNegFeedbackMillis = millis()
+    }
 }
 
 function refreshArrow() {
@@ -87,6 +94,7 @@ function correctCharTyped() {
     story = story.replace('_',originalStory.charAt(currentBlank))
     story = story.replace('<','')
     refreshArrow()
+    startPosFeedbackMillis = millis()
 }
 
 // function to insert text into string
@@ -100,22 +108,28 @@ function setCharAt(str, index, chr) {
     return str.substring(0,index) + chr + str.substring(index+1);
 }
 
-// happens every frame when typing game active
+// happens every frame when typing game is running
 function drawGame2() {
     background('blue')
 
-    // title
+    // print title
     textSize(40)
     textFont()
     fill('white')
     text("Type the Story",200,50)
 
-    // subtitle
+    // print subtitle (time and fastest time display)
     textSize(20)
     if (!done2) {
         score2 = Math.floor((millis() - startMillis)/1000)
     }
-    text(`Time: ${score2}, Best Time: ${highScore2}`,200,100)
+    if (highScore2 == 0) {
+        subtitle2 = `Time: ${score2}`
+    }
+    else {
+        subtitle2 = `Time: ${score2}\nFastest Time: ${highScore2}`
+    }
+    text(`${subtitle2}`,200,100)
     
     // print story
     textSize(20)
@@ -128,23 +142,43 @@ function drawGame2() {
     }
 
     // print next key
-    nextCharacter = 
-    nextKeyText = `Next Key: ${originalStory.charAt(currentBlank)}`
-    if (originalStory.charAt(currentBlank) == ' ') {
+    nextChar = originalStory.charAt(currentBlank)
+    nextKeyText = `Next Key: ${nextChar}`
+    if (nextChar == ' ') {
         nextKeyText = `Next Key: space`
+        // fill(none)
+        // stroke(12)
+        // rect(550,80,200,500)
     }
-    if (originalStory.charAt(currentBlank) == ',') {
+    if (nextChar == ',') {
         nextKeyText = `Next Key: comma`
     }
-    if (originalStory.charAt(currentBlank) == '.') {
+    if (nextChar == '.') {
         nextKeyText = `Next Key: period`
     }
     if (done2) {
-        nextKeyText = 'All Done!'
+        nextKeyText = ''
     }
-    text('next key')
-    text(nextKeyText,400,500)
+    // text('next key')
+    text(nextKeyText,400,450)
     
+    // ✅ and ❌ feedback
+    feedback = ''
+    textSize(50)
+    textFont('arial')
+    if (millis() < startNegFeedbackMillis+700 ) {
+        text('❌',400,590 + 50 * cos( (millis() - startNegFeedbackMillis)/100 ) )
+    }
+    if (millis() < startPosFeedbackMillis+700 ) {
+        text('✅',400,590 + 50 * cos( (millis() - startPosFeedbackMillis)/100 ) )
+    }
+    textFont(partyConfetti) // resets font
+    
+    // STORY COMPLETE! feedback
+    if (done2) {
+        text('STORY COMPLETE!',400,470+9*cos(millis()/200))
+    }
+
     textAlign(LEFT) // resets alignment
 }
 
