@@ -1,8 +1,8 @@
 /*
 to-do:
 
-add feedback for new fastest time
-add audio feedback
+add better audio feedback for game complete
+add best audio feedback for new fastest time
 put square around next key with special cases for space comma period
 add more stories
 */
@@ -12,15 +12,35 @@ function setupGame2(){
     highScore2 = 0 // high score for game 2
     startPosFeedbackMillis = -9999
     startNegFeedbackMillis = -9999
+    setupPlayAgainButton2()
     // startGame2() // starts game 2 when program starts (for testing)
+}
+
+function setupPlayAgainButton2() {
+    playAgainButton2 = createButton('Restart')
+    playAgainButton2.position(2,80)
+    playAgainButton2.size(175,70)
+    playAgainButton2.mouseClicked(startGame2)
+    playAgainButton2.hide()
+}
+
+function keyUp(e) { 
+    var e = window.event || e;
+    var key = e.keyCode;
+    //space pressed
+     if (key == 32) { //space
+      e.preventDefault();
+     }          
 }
 
 // happens once every time typing game starts
 function startGame2(){
-    done2 = false
     game2 = true
     menu = false
     clearMenu()
+    done2 = false
+    newHighScore2 = false
+    playAgainButton2.hide()
     
     // score
     score2 = 0
@@ -55,6 +75,12 @@ function startGame2(){
 
 // happens when any key is pressed
 function keyPressed() {
+    // if incorrect char
+    if (!done2 && key != originalStory.charAt(currentBlank)) {
+        startNegFeedbackMillis = millis()
+        negSound.play()
+    }
+    // if correct char
     if (key == originalStory.charAt(currentBlank)) {
         if (currentBlank != lastBlank) {
             correctCharTyped()
@@ -65,12 +91,9 @@ function keyPressed() {
             done2 = true
             if (highScore2 == 0 || score2 < highScore2) {
                 highScore2 = score2
+                newHighScore2 = true
             }
         }
-    }
-    // if wrong char
-    if (!done2 && key != originalStory.charAt(currentBlank)) {
-        startNegFeedbackMillis = millis()
     }
 }
 
@@ -90,11 +113,12 @@ function refreshArrow() {
 
 // happens when correct character is typed
 function correctCharTyped() {
-    // replace 
     story = story.replace('_',originalStory.charAt(currentBlank))
     story = story.replace('<','')
     refreshArrow()
     startPosFeedbackMillis = millis()
+    posSound.play()
+    playAgainButton2.show()
 }
 
 // function to insert text into string
@@ -175,14 +199,19 @@ function drawGame2() {
     textFont(partyConfetti) // resets font
     
     // STORY COMPLETE! feedback
+    storyCompleteText = ''
     if (done2) {
-        text('STORY COMPLETE!',400,470+9*cos(millis()/200))
+        storyCompleteText = 'STORY COMPLETE!'
+        if (newHighScore2) {
+            storyCompleteText = 'NEW FASTEST TIME!'
+        }
     }
+    text(storyCompleteText,400,470+9*cos(millis()/200))
 
     textAlign(LEFT) // resets alignment
 }
 
 // happens when back button clicked
 function clearGame2(){
-    
+    playAgainButton2.hide()
 }
