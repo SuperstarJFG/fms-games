@@ -43,9 +43,6 @@ function circleMouse(){
     else{
         fill('black')
     }
-    }
-
-
 }
 
 // happens when back button clicked
