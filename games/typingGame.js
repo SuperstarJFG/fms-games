@@ -1,10 +1,8 @@
 /*
 to-do:
 
-add better audio feedback for game complete
-add best audio feedback for new fastest time
-put square around next key with special cases for space comma period
 add more stories
+add visual display when complete
 */
 
 // happens only once when program starts
@@ -41,6 +39,7 @@ function startGame2(){
     done2 = false
     newHighScore2 = false
     playAgainButton2.hide()
+    endSoundPlayed = false
     
     // score
     score2 = 0
@@ -76,22 +75,24 @@ function startGame2(){
 // happens when any key is pressed
 function keyPressed() {
     // if incorrect char
-    if (!done2 && key != originalStory.charAt(currentBlank)) {
-        startNegFeedbackMillis = millis()
-        negSound.play()
-    }
-    // if correct char
-    if (key == originalStory.charAt(currentBlank)) {
-        if (currentBlank != lastBlank) {
-            correctCharTyped()
+    if (game2) {
+        if (!done2 && key != originalStory.charAt(currentBlank)) {
+            startNegFeedbackMillis = millis()
+            negSound.play()
         }
-        else { // when game is done
-            story = originalStory
-            altStory = originalStory
-            done2 = true
-            if (highScore2 == 0 || score2 < highScore2) {
-                highScore2 = score2
-                newHighScore2 = true
+        // if correct char
+        if (key == originalStory.charAt(currentBlank)) {
+            if (currentBlank != lastBlank) {
+                correctCharTyped()
+            }
+            else { // when game is done
+                story = originalStory
+                altStory = originalStory
+                done2 = true
+                if (highScore2 == 0 || score2 < highScore2) {
+                    highScore2 = score2
+                    newHighScore2 = true
+                }
             }
         }
     }
@@ -165,45 +166,86 @@ function drawGame2() {
         text(altStory,400,300)
     }
 
-    // print next key
+    // next key display
     nextChar = originalStory.charAt(currentBlank)
-    nextKeyText = `Next Key: ${nextChar}`
-    if (nextChar == ' ') {
-        nextKeyText = `Next Key: space`
-        // fill(none)
-        // stroke(12)
-        // rect(550,80,200,500)
-    }
-    if (nextChar == ',') {
-        nextKeyText = `Next Key: comma`
-    }
-    if (nextChar == '.') {
-        nextKeyText = `Next Key: period`
+    if (!done2) {
+        if (nextChar != ' ' && nextChar != ',' && nextChar != '.') {
+            nextKeyText = `push key: ${nextChar}`
+            noFill()
+            strokeWeight(7)
+            stroke('white')
+            rect(350,480,100,100)
+            noStroke()
+            fill('white')
+            textSize(50)
+            textFont('arial')
+            text(nextChar.toUpperCase(),400,530)
+        }
+        if (nextChar == ' ') {
+            nextKeyText = `push key: space`
+            noFill()
+            strokeWeight(7)
+            stroke('white')
+            rect(100,480,600,100)
+            noStroke()
+            fill('white')
+        }
+        if (nextChar == ',') {
+            nextKeyText = `push key: comma`
+            noFill()
+            strokeWeight(7)
+            stroke('white')
+            rect(350,480,100,100)
+            noStroke()
+            fill('white')
+            textSize(30)
+            textFont('arial')
+            text('<\n,',400,530)
+        }
+        if (nextChar == '.') {
+            nextKeyText = `push key: period`
+            noFill()
+            strokeWeight(7)
+            stroke('white')
+            rect(350,480,100,100)
+            noStroke()
+            fill('white')
+            textSize(30)
+            textFont('arial')
+            text('>\n.',400,530)
+        }
     }
     if (done2) {
         nextKeyText = ''
     }
-    // text('next key')
+    textSize(30)
+    textFont('partyConfetti')
     text(nextKeyText,400,450)
     
     // ✅ and ❌ feedback
     feedback = ''
     textSize(50)
     textFont('arial')
-    if (millis() < startNegFeedbackMillis+700 ) {
-        text('❌',400,590 + 50 * cos( (millis() - startNegFeedbackMillis)/100 ) )
+    if (millis() < startNegFeedbackMillis+300 ) {
+        text('❌',400,590 + 50 * cos( (millis() - startNegFeedbackMillis)/50 ) )
     }
-    if (millis() < startPosFeedbackMillis+700 ) {
-        text('✅',400,590 + 50 * cos( (millis() - startPosFeedbackMillis)/100 ) )
+    if (millis() < startPosFeedbackMillis+300 ) {
+        text('✅',400,590 + 50 * cos( (millis() - startPosFeedbackMillis)/50 ) )
     }
-    textFont(partyConfetti) // resets font
+    textFont(partyConfetti)
     
-    // STORY COMPLETE! feedback
+    // STORY COMPLETE!/NEW FASTEST TIME! feedback + sounds
     storyCompleteText = ''
     if (done2) {
         storyCompleteText = 'STORY COMPLETE!'
+        endSound = posSound2
         if (newHighScore2) {
             storyCompleteText = 'NEW FASTEST TIME!'
+            endSound = posSound3
+        }
+        if (!endSoundPlayed) {
+            endSound.play()
+            endSoundPlayed = true
         }
     }
     text(storyCompleteText,400,470+9*cos(millis()/200))
