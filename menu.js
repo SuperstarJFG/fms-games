@@ -1,7 +1,17 @@
 function preload() {
   partyConfetti = loadFont('assets/partyConfetti.ttf')
   posSound = loadSound('assets/posSound.mp3')
+  posSound2 = loadSound('assets/posSound2.mp3')
+  posSound3 = loadSound('assets/posSound3.mp3')
   negSound = loadSound('assets/negSound.mp3')
+  spider = loadImage('assets/spider.png')
+  spider2 = loadImage('assets/spider2.png')
+  boat = loadImage('assets/boat.png')
+  water = loadImage('assets/water.png')
+  bus = loadImage('assets/bus.png')
+  bus2 = loadImage('assets/bus2.png')
+  bus3 = loadImage('assets/bus3.png')
+  bus4 = loadImage('assets/bus4.png')
 }
 
 function setup() {
@@ -59,10 +69,6 @@ function draw() {
   if (game3) {
     drawGame3()
   }
-
-  // Trying to get a greeting to be displayed in the game, still being worked on
-  // fontPacifico = pygame.font.SysFont('Pacifico', 25, false, false)
-  // greeting = fontPacifico.render('Welcome Player!', true, (0,0,0))
 }
 
 function drawMenu() {
