@@ -1,3 +1,10 @@
+/*
+TODO:
+
+add instructions
+*/
+
+
 // happens only once when program starts
 function setupGame2(){
     highScore2 = 0 // high score for game 2
@@ -35,7 +42,7 @@ function startGame2() {
 
     // choose story
     originalStories = ['the itsy bitsy spider crawled up the water spout.\ndown came the rain, and washed the spider out.\nout came the sun, and dried up all the rain,\nand the itsy bitsy spider went up the spout again.',
-        'row, row, row your boat,\nGently down the stream.\nmerrily, merrily, merrily, merrily,\nlife is but a dream.',
+        'row, row, row your boat,\ngently down the stream.\nmerrily, merrily, merrily, merrily,\nlife is but a dream.',
         'the wheels on the bus go round and round,\nround and round,\nround and round.\nthe wheels on the bus go round and round,\nall through the town.',
         ]
     if (storiesCompleted < 3) {
