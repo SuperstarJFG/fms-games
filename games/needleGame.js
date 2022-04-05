@@ -11,8 +11,13 @@ let displayLevel = true
 
 // happens only once when program starts
 function setupGame1(){
-    img = loadImage('assets/needleEdit.png')
-
+    level1 = loadImage('assets/level1.png')
+    level2 = loadImage('assets/level2.png')
+    level3 = loadImage('assets/level3.png')
+    level4 = loadImage('assets/level4.png')
+    level5 = loadImage('assets/level5.png')
+    level6 = loadImage('assets/level6.png')
+    level7 = loadImage('assets/level7.png')
 
     gameButtonLength = 265
     gameButtonHeight = 100
@@ -21,6 +26,7 @@ function setupGame1(){
     start2x = 250;
     start1y = 350;
     start2y = 350;
+    //starting position for the thread
 
 // the code below creates the start button
     
@@ -31,28 +37,81 @@ function setupGame1(){
     startButton.style('background-color:yellow')
     startButton.mousePressed(clearStartButton)
     startButton.hide();
+    //creates start button
 }
 
 
-// happens once every time needle game starts
+//--------------------resets the game everytime it's called-------/
 function startGame1(){
     game1 = true
     menu = false
+    
     highScore = 0
     currentLevel = 1
+
+    targetPointX = 0;
+    targetPointY1 = 0;
+    targetPointY2 = 0;
+    //target points to score
+
     clearMenu()
 
-
     startButton.show(clearStartButton)
-
 }
 
-// happens every frame when needle game active
-function drawGame1() {
-
-
+//-----------------------draws th game and its functions-------------/
+function drawGame1() 
+{
     background('red')
-    image(img, 0, 0)
+    switch (currentLevel)
+    {
+        case 1:
+            image(level1, 0, 0)
+            targetPointX = 615;
+            targetPointY1 = 310;
+            targetPointY2 = 430;
+            break
+        case 2: 
+            image(level2, 0, 0)
+            targetPointX = 615;
+            targetPointY1 = 290;
+            targetPointY2 = 365;
+            break
+        case 3:
+            image(level3, 0, 0)
+            targetPointX = 605;
+            targetPointY1 = 245;
+            targetPointY2 = 305;
+            break
+        case 4:
+            image(level4, 0, 0)
+            targetPointX = 608;
+            targetPointY1 = 245;
+            targetPointY2 = 285;
+            break
+        case 5:
+            image(level5, 0, 0)
+            targetPointX = 615;
+            targetPointY1 = 265;
+            targetPointY2 = 295;
+            break
+        case 6:
+            image(level6, 0, 0)
+            targetPointX = 615;
+            targetPointY1 = 235;
+            targetPointY2 = 260;
+            break
+        case 7: 
+            image(level7, 0, 0)
+            targetPointX = 620;
+            targetPointY1 = 270;
+            targetPointY2 = 285;
+            break
+
+    }
+    /* changes starting points for each of the needle and draws the
+    next level of the game */
+
     textSize(40)
     textFont()
     fill('white')
@@ -96,8 +155,15 @@ function drawThread ()
 function printInstruction () 
 {
     stroke('white')
-    text('Feed the thread through the needle!', 200, 200)
-    text('Hold to control the thread!', 218, 220)
+    text('Feed the thread through the needle!', 250, 200)
+    text('Hold to control the thread!', 270, 220)
+}
+
+function printMissedTarget ()
+{
+    stroke('white')
+    text('Oh no! You miseed!', 250, 200)
+    text('Try Again!', 270, 220)
 }
 
 function deleteText ()
@@ -118,20 +184,27 @@ function playerControl()
         {
             stroke(0)
             strokeWeight(7)
-            line(0, mouseY, mouseX, mouseY);
+            line(0, mouseY, mouseX + 25, mouseY);
             strokeWeight(0)
-            if (mouseX > 450)
+            if (mouseX > targetPointX && mouseY > targetPointY1 && mouseY < targetPointY2)
             {
                 trackHighScore()
+                deleteText()
                 if (highScore > highScore1)
                 {
                     highScore1 = highScore
                 }
-                activatePlayer = false
-                startButton.show(clearStartButton)
-                displayLevel = true
+                //--resets the thread, the start button and displays current level--//
+                
+                    activatePlayer = false
+                    startButton.show(clearStartButton)
+                    displayLevel = true
+    
+                //------------------------------------------------/
+            } else {
+                printMissedTarget()
             }
-            deleteText()
+            
         }
 
     } else {
