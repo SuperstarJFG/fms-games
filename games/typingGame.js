@@ -1,7 +1,10 @@
 /*
-TODO:
+TO-DO LIST:
 
+center canvas https://github.com/processing/p5.js/wiki/Positioning-your-canvas
+change button font
 add instructions
+add next story button
 */
 
 
