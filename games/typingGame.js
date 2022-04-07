@@ -1,9 +1,10 @@
 /*
 TO-DO LIST:
 
+-add instructions that say what motor skills are being practiced
+-make sure text can be read when animations are playing
 center canvas https://github.com/processing/p5.js/wiki/Positioning-your-canvas
 change button font
-add instructions
 add next story button
 */
 
