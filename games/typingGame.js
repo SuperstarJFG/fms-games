@@ -1,7 +1,13 @@
 /*
-TODO:
+TO-DO LIST:
 
-add instructions
+-add instructions that say what motor skills are being practiced
+    add screen before first play
+-make sure text can be read when animations are playing
+center canvas https://github.com/processing/p5.js/wiki/Positioning-your-canvas
+add button click sound
+change button font
+add next story button
 */
 
 
@@ -12,6 +18,8 @@ function setupGame2(){
     startNegFeedbackMillis = -9999
     setupPlayAgainButton2()
     storiesCompleted = 0
+    introSeen2 = false
+    setupStartButton2()
     debug2 = false
     // startGame2() // starts game 2 when program starts (for testing)
     // debug2 = true
@@ -23,6 +31,19 @@ function setupPlayAgainButton2() {
     playAgainButton2.size(175,70)
     playAgainButton2.mouseClicked(startGame2)
     playAgainButton2.hide()
+}
+
+function setupStartButton2() {
+    startButton2 = createButton('Start')
+    startButton2.position(310,400)
+    startButton2.size(175,70)
+    startButton2.mouseClicked(startButton2Pressed)
+    startButton2.hide()
+}
+
+function startButton2Pressed() {
+    introSeen2 = true
+    startMillis = Math.floor(millis())
 }
 
 // happens once every time typing game starts
@@ -77,7 +98,7 @@ function startGame2() {
 // happens when any key is pressed
 function keyPressed() {
     // if incorrect char
-    if (game2) {
+    if (game2 && introSeen2) {
         if (!done2 && key != originalStory.charAt(currentBlank)) {
             startNegFeedbackMillis = millis()
             negSound.play()
@@ -152,6 +173,18 @@ function drawGame2() {
     textFont()
     fill('white')
     text("Type the Story",200,50)
+
+    // draw intro screen
+    startButton2.hide()
+    if (!introSeen2) {
+        startButton2.show()
+        textSize(20)
+        textAlign(CENTER,CENTER)
+        text('intro text',400,300)
+        textAlign(LEFT) // resets alignment
+        return
+    }
+    startButton2.hide()
 
     // print subtitle (time and fastest time display)
     textSize(20)
@@ -299,10 +332,10 @@ function drawGame2() {
     textAlign(CENTER)
     if (done2) {
         if (storiesCompleted < 3) {
-            text(`restart for\nnext story`,90,180)
+            text(`restart for\nnext story`,90,190+5*cos(millis()/200))
         }
         else {
-            text(`restart for\nrandom story`,90,180)
+            text(`restart for\nrandom story`,90,190+5*cos(millis()/200))
         }
     }
     textAlign(LEFT)
@@ -352,7 +385,7 @@ function animateStory2() {
 
 function animateStory3() {
     busRatio = (frames2 % 500)/500
-    if (frames2 % 1000 < 500) {
+    if (!(frames2 % 1000 < 500)) {
         if (frames2 % 10 < 5) {
             currentBus = bus
         }
@@ -378,4 +411,5 @@ function animateStory3() {
 // happens when back button clicked
 function clearGame2(){
     playAgainButton2.hide()
+    startButton2.hide()
 }
