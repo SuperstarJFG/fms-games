@@ -21,7 +21,7 @@ function setupGame2(){
     introSeen2 = false
     setupStartButton2()
     debug2 = false
-    startGame2() // starts game 2 when program starts (for testing)
+    // startGame2() // starts game 2 when program starts (for testing)
     // debug2 = true
 }
 
@@ -335,7 +335,7 @@ function drawGame2() {
             text(`restart for\nnext story`,90,190+5*cos(millis()/200))
         }
         else {
-            text(`restart for\nrandom story`,90,190+9*cos(millis()/200))
+            text(`restart for\nrandom story`,90,190+5*cos(millis()/200))
         }
     }
     textAlign(LEFT)
