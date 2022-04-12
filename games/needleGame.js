@@ -5,7 +5,7 @@ let gameRun = false
 let activatePlayer = false
 let removeText = true
 let displayLevel = true
- 
+let timer = false 
 //----------------------------------------------------------------/
 
 
@@ -29,7 +29,13 @@ function setupGame1(){
     //starting position for the thread
 
 // the code below creates the start button
-    
+    restart = createButton('Play Again?')
+    restart.position(265, 2500)
+    restart.size(gameButtonLength, gameButtonHeight)
+    restart.style('background-color:orange')
+    restart.mousePressed(clearRestartButton)
+    restart.hide();
+
 
     startButton = createButton('Start!')
     startButton.position(265, 200)
@@ -47,7 +53,7 @@ function startGame1(){
     menu = false
     
     highScore = 0
-    currentLevel = 1
+    currentLevel = 0
 
     targetPointX = 0;
     targetPointY1 = 0;
@@ -65,6 +71,8 @@ function drawGame1()
     background('red')
     switch (currentLevel)
     {
+        case 0:
+            break;
         case 1:
             image(level1, 0, 0)
             targetPointX = 615;
@@ -107,6 +115,17 @@ function drawGame1()
             targetPointY1 = 270;
             targetPointY2 = 285;
             break
+        case 8: 
+            removeText = false
+            activatePlayer = false
+            text('Congratulations! You have completed the game!', 150, 200 )
+            text('Play Again?', 170, 215)
+            restart.show(clearRestartButton)
+
+            highScore1 = highScore
+            timer = false
+            break
+
 
     }
     /* changes starting points for each of the needle and draws the
@@ -118,7 +137,12 @@ function drawGame1()
     text("Thread the Needle",200,50)
     textSize(20)
 
-    text('Score: '+highScore+', High Score: '+highScore1,200,75)
+    
+    if (timer)
+    {
+        highScore = Math.floor(millis() / 1000)
+        text('Score: '+highScore+', High Score: '+highScore1,200,75)
+    }
 
     if (displayLevel == true)
     {
@@ -186,14 +210,10 @@ function playerControl()
             strokeWeight(7)
             line(0, mouseY, mouseX + 25, mouseY);
             strokeWeight(0)
-            if (mouseX > targetPointX && mouseY > targetPointY1 && mouseY < targetPointY2)
+            if (mouseX > targetPointX && mouseY > targetPointY1 && mouseY < targetPointY2 && mouseX < targetPointX + 5)
             {
                 trackHighScore()
                 deleteText()
-                if (highScore > highScore1)
-                {
-                    highScore1 = highScore
-                }
                 //--resets the thread, the start button and displays current level--//
                 
                     activatePlayer = false
@@ -201,10 +221,15 @@ function playerControl()
                     displayLevel = true
     
                 //------------------------------------------------/
-            } else {
+            } 
+            if (mouseX > targetPointX && mouseY < targetPointY1 || mouseX > targetPointX && mouseY > targetPointY2)
+            {
                 printMissedTarget()
-            }
-            
+                removeText = false
+                activatePlayer = true
+            } else {
+                removeText = true
+            }   
         }
 
     } else {
@@ -212,10 +237,10 @@ function playerControl()
         strokeWeight(7)
         line(start1x, start1y, start2x, start2y)
         strokeWeight(0)
-
     }
     
 }
+
 
 function startGame ()
 {
@@ -228,7 +253,6 @@ function startGame ()
 function trackHighScore ()
 { 
     ++highScore
-   ++ currentLevel
 }
 //------------------------Button Functions--------------------------//
 function clearStartButton ()
@@ -236,9 +260,21 @@ function clearStartButton ()
     startButton.hide()
     gameRun = true
     displayLevel = false
+    timer = true
+    ++ currentLevel
+}
+function clearRestartButton () 
+{
+    restart.hide()
+    gameRun = true
+    displayLevel = false
+    timer = true
 }
 function clearGame1(){
     gameRun = false
+    timer = false
     activatePlayer = false
     startButton.hide()
+    restart.hide()
+    highScore = 0
 }// happens when back button clicked
