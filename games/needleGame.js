@@ -30,7 +30,7 @@ function setupGame1(){
 
 // the code below creates the start button
     restart = createButton('Play Again?')
-    restart.position(265, 2500)
+    restart.position(265, 250)
     restart.size(gameButtonLength, gameButtonHeight)
     restart.style('background-color:orange')
     restart.mousePressed(clearRestartButton)
@@ -118,8 +118,8 @@ function drawGame1()
         case 8: 
             removeText = false
             activatePlayer = false
-            text('Congratulations! You have completed the game!', 150, 200 )
-            text('Play Again?', 170, 215)
+            text('Congratulations! You have completed the game!', 200, 200 )
+            text('Play Again?', 350, 215)
             restart.show(clearRestartButton)
 
             highScore1 = highScore
@@ -266,9 +266,7 @@ function clearStartButton ()
 function clearRestartButton () 
 {
     restart.hide()
-    gameRun = true
-    displayLevel = false
-    timer = true
+    startGame1()
 }
 function clearGame1(){
     gameRun = false
