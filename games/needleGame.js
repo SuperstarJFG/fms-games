@@ -6,6 +6,8 @@ let activatePlayer = false
 let removeText = true
 let displayLevel = true
 let timer = false 
+let roundStart;
+let justStarted = true;
 //----------------------------------------------------------------/
 
 
@@ -53,6 +55,8 @@ function startGame1(){
     menu = false
     
     highScore = 0
+    restartTimer = 0;
+    //roundStart = 0;
     currentLevel = 0
 
     targetPointX = 0;
@@ -122,7 +126,12 @@ function drawGame1()
             text('Play Again?', 350, 215)
             restart.show(clearRestartButton)
 
-            highScore1 = highScore
+            //highScore1 = highScore
+            if(highScore1 == 0)
+                highScore1 = restartTimer;
+            else if(highScore1 > restartTimer){
+                highScore1 = restartTimer;
+            }
             timer = false
             break
 
@@ -141,7 +150,7 @@ function drawGame1()
     if (timer)
     {
         highScore = Math.floor(millis() / 1000)
-        restartTimer = highScore - highScore1
+        restartTimer = highScore - roundStart;
         text('Score: '+ restartTimer+', High Score: '+highScore1,200,75)
         
     }
@@ -264,18 +273,28 @@ function clearStartButton ()
     displayLevel = false
     timer = true
     ++ currentLevel
+
+    if(justStarted){
+        roundStart = Math.floor(millis() / 1000)
+        justStarted = false;
+    }
+
+    
 }
 function clearRestartButton () 
 {
     restart.hide()
     startGame1()
     highScore = 0
+    roundStart = Math.floor(millis() / 1000)
+    justStarted = true;
 }
 function clearGame1(){
     gameRun = false
-    timer = false
     activatePlayer = false
+    timer = false
     startButton.hide()
     restart.hide()
     highScore = 0
+    justStarted = true;
 }// happens when back button clicked
