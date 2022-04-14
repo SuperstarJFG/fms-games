@@ -141,7 +141,9 @@ function drawGame1()
     if (timer)
     {
         highScore = Math.floor(millis() / 1000)
-        text('Score: '+highScore+', High Score: '+highScore1,200,75)
+        restartTimer = highScore - highScore1
+        text('Score: '+ restartTimer+', High Score: '+highScore1,200,75)
+        
     }
 
     if (displayLevel == true)
@@ -212,7 +214,7 @@ function playerControl()
             strokeWeight(0)
             if (mouseX > targetPointX && mouseY > targetPointY1 && mouseY < targetPointY2 && mouseX < targetPointX + 5)
             {
-                trackHighScore()
+                //trackHighScore()
                 deleteText()
                 //--resets the thread, the start button and displays current level--//
                 
@@ -250,10 +252,10 @@ function startGame ()
         gameRun = false
     }
 }
-function trackHighScore ()
-{ 
-    ++highScore
-}
+// function trackHighScore ()
+// { 
+//     ++highScore
+// }
 //------------------------Button Functions--------------------------//
 function clearStartButton ()
 {
@@ -267,6 +269,7 @@ function clearRestartButton ()
 {
     restart.hide()
     startGame1()
+    highScore = 0
 }
 function clearGame1(){
     gameRun = false
