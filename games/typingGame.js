@@ -180,7 +180,7 @@ function drawGame2() {
         startButton2.show()
         textSize(20)
         textAlign(CENTER,CENTER)
-        text('intro text',400,300)
+        text('',400,300)
         textAlign(LEFT) // resets alignment
         return
     }
