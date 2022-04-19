@@ -2,7 +2,6 @@
 TO-DO LIST:
 
 -add instructions that say what motor skills are being practiced
-    add screen before first play
 -make sure text can be read when animations are playing
 center canvas https://github.com/processing/p5.js/wiki/Positioning-your-canvas
 add button click sound
