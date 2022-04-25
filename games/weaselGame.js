@@ -70,6 +70,7 @@ function drawGame3() {
     if(w==11){
         weaselImage(620,490)
     }
+    highscore3 = Math.floor(millis/1000)
 
 }
 //weasel image
@@ -79,6 +80,7 @@ function weaselImage(x,y){
 }
 function weaselCLick(){
     w = Math.ceil(Math.random()*11)
+    score3 = score3 + 1
 }
 function mousePressed(){
     if((w==1) && (dist(mouseX,mouseY,150,290)<150)){
@@ -114,8 +116,15 @@ function mousePressed(){
     if((w==11) && (dist(mouseX,mouseY,620,490)<150)){
         weaselCLick()
     }
+    
 }
-
+function gameOver3(){
+    if(weaselCLick =! weaselImage){
+        highscore3 = score3
+        rectangle(150,150,300,300)
+        text("Game Over",300,300)
+    }
+}
 
 // happens when back button clicked
 function clearGame3(){
