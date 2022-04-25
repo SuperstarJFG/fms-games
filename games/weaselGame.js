@@ -70,8 +70,6 @@ function drawGame3() {
     if(w==11){
         weaselImage(620,490)
     }
-    
-
 }
 //weasel image
 function weaselImage(x,y){
@@ -80,7 +78,7 @@ function weaselImage(x,y){
 }
 function weaselCLick(){
     w = Math.ceil(Math.random()*11)
-    score3 = score3 + 1
+    score3++
 }
 function mousePressed(){
     if((w==1) && (dist(mouseX,mouseY,150,290)<150)){
@@ -116,7 +114,6 @@ function mousePressed(){
     if((w==11) && (dist(mouseX,mouseY,620,490)<150)){
         weaselCLick()
     }
-    
 }
 
 
