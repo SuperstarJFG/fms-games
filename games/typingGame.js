@@ -1,6 +1,7 @@
 /*
 TO-DO LIST:
 
+change scoreboard
 add button click sound
 change button font
 add next story button
