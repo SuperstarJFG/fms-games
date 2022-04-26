@@ -1,18 +1,26 @@
 // one-time initial setup
 let img;
+let timer3;
 function setupGame3(){
     highScore3=0 // high score for game 3
     img = loadImage('assets/weasel1.png');
+    restartButton3 = createButton('Play Again?')
+    restartButton3.position(300,300)
+    restartButton3.mousePressed(startGame3)
+    restartButton3.hide()
 }
 
 // happens every time game starts
 function startGame3(){
+    timer3 = 20
     game3 = true
     menu = false
     clearMenu()
-    score3=0 // current score for game 3
+    score3=-1 // current score for game 3
     weaselCLick()
+    restartButton3.hide()
 }
+
 
 // constant drawing of game when active
 function drawGame3() {
@@ -23,6 +31,7 @@ function drawGame3() {
     text("Pop the Weasel",200,50)
     textSize(20)
     text('Score: '+score3+', High Score: '+highScore3,200,75)
+    text('Timer: '+ timer3,200,100)
     fill('orange')
     rect(90,230,600,320)
     fill('black')
@@ -37,6 +46,7 @@ function drawGame3() {
     circle(330,490,70)
     circle(480,490,70)
     circle(620,490,70)
+    
     if(w==1){
         weaselImage(150,290)
     }
@@ -70,6 +80,16 @@ function drawGame3() {
     if(w==11){
         weaselImage(620,490)
     }
+
+    if(frameCount % 60 == 0 && timer3 > 0){
+        timer3--
+    }
+    if(timer3 == 0){
+        restartButton3.show()
+    }
+    if(score3 > highScore3 && timer3 == 0){
+        highScore3 = score3
+    }
 }
 //weasel image
 function weaselImage(x,y){
@@ -79,7 +99,9 @@ function weaselImage(x,y){
 function weaselCLick(){
     w = Math.ceil(Math.random()*11)
     score3++
+    posSound.play()
 }
+
 function mousePressed(){
     if((w==1) && (dist(mouseX,mouseY,150,290)<150)){
         weaselCLick()
@@ -119,4 +141,5 @@ function mousePressed(){
 
 // happens when back button clicked
 function clearGame3(){
+    restartButton3.hide()
 }
