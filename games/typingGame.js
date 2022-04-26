@@ -2,8 +2,7 @@
 TO-DO LIST:
 
 -add instructions that say what motor skills are being practiced
--make sure text can be read when animations are playing
-center canvas https://github.com/processing/p5.js/wiki/Positioning-your-canvas
+see if putting sketch in div moves buttons https://github.com/processing/p5.js/wiki/Positioning-your-canvas
 add button click sound
 change button font
 add next story button
@@ -54,11 +53,10 @@ function startGame2() {
     newHighScore2 = false // did player just get new high score on game 2
     playAgainButton2.hide()
     endSoundPlayed = false
-    frames2 = 0
+    frames2 = 0 // resets animation frames
     
-    // score
-    score2 = 0
-    startMillis = Math.floor(millis())
+    score2 = 0 // resets timer
+    startMillis = Math.floor(millis()) // saves milliseconds since game started to be used in timer system
 
     // choose story
     originalStories = ['the itsy bitsy spider crawled up the water spout.\ndown came the rain, and washed the spider out.\nout came the sun, and dried up all the rain,\nand the itsy bitsy spider went up the spout again.',
@@ -82,7 +80,7 @@ function startGame2() {
         }
     }
 
-    refreshArrow()
+    refreshArrow() 
     
     // get last blank index
     lastBlank = 0
@@ -177,9 +175,10 @@ function drawGame2() {
     startButton2.hide()
     if (!introSeen2) {
         startButton2.show()
-        textSize(20)
+        textSize(24)
         textAlign(CENTER,CENTER)
-        text('',400,300)
+        introText = 'Press the key shown on the bottom to fill in the blanks in the story.\n\ncomplete the three stories in order, then retry to go for a better time!'
+        text(introText,400,300)
         textAlign(LEFT) // resets alignment
         return
     }
@@ -363,12 +362,12 @@ function drawGame2() {
     }
 }
 
+//animations that play when stories completed
 function animateStory1() {
     spiderX = -400 * cos( (frames2)/200 )
     spiderY = 50 * cos( (frames2)/90 ) - 50
     image(spider,spiderX,spiderY)
 }
-
 function animateStory2() {
     spiderX = 660 * cos( (frames2)/200 ) + 200
     spiderY = 10 * cos( (frames2)/20 ) + 110
@@ -381,7 +380,6 @@ function animateStory2() {
     }
     image(water,-30,waterY+27,860,213)
 }
-
 function animateStory3() {
     busRatio = (frames2 % 500)/500
     if (!(frames2 % 1000 < 500)) {
