@@ -1,8 +1,6 @@
 /*
 TO-DO LIST:
 
--add instructions that say what motor skills are being practiced
-see if putting sketch in div moves buttons https://github.com/processing/p5.js/wiki/Positioning-your-canvas
 add button click sound
 change button font
 add next story button
