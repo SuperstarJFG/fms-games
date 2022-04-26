@@ -43,7 +43,7 @@ function setupGame1(){
     startButton = createButton('Start!')
     startButton.position(265, 200)
     startButton.size(gameButtonLength, gameButtonHeight)
-    startButton.style('background-color:yellow')
+    startButton.style('background-color:orange')
     startButton.mousePressed(clearStartButton)
     startButton.hide();
     //creates start button
