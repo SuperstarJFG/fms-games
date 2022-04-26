@@ -20,6 +20,7 @@ function setupGame1(){
     level5 = loadImage('assets/level5.png')
     level6 = loadImage('assets/level6.png')
     level7 = loadImage('assets/level7.png')
+    
 
     gameButtonLength = 265
     gameButtonHeight = 100
@@ -125,6 +126,7 @@ function drawGame1()
             text('Congratulations! You have completed the game!', 200, 200 )
             text('Play Again?', 350, 215)
             restart.show(clearRestartButton)
+            posSound3.play()
 
             //highScore1 = highScore
             if(highScore1 == 0)
@@ -230,6 +232,7 @@ function playerControl()
                     activatePlayer = false
                     startButton.show(clearStartButton)
                     displayLevel = true
+                    posSound.play()
     
                 //------------------------------------------------/
             } 
