@@ -86,6 +86,7 @@ function drawGame3() {
     }
     if(timer3 == 0){
         restartButton3.show()
+        drawGame3 = false
     }
     if(score3 > highScore3 && timer3 == 0){
         highScore3 = score3
