@@ -153,3 +153,10 @@ function backButtonClicked(){
   menu = true
   backButton.hide()
 }
+
+// prevents spacebar from scrolling down
+window.addEventListener('keydown', (e) => {  
+  if (e.keyCode === 32 && e.target === document.body) {  
+    e.preventDefault();  
+  }  
+});
