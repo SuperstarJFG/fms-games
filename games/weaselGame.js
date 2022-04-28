@@ -31,7 +31,12 @@ function drawGame3() {
     text("Pop the Weasel",200,50)
     textSize(20)
     text('Score: '+score3+', High Score: '+highScore3,200,75)
-    text('Timer: '+ timer3,200,100)
+    if (timer3) {
+        text('Timer: '+ timer3,200,100)
+    }
+    else {
+        text("Time's Up!",200,100)
+    }
     fill('orange')
     rect(90,230,600,320)
     fill('black')
