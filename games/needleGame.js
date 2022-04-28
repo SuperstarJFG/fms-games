@@ -68,6 +68,8 @@ function startGame1(){
     clearMenu()
 
     startButton.show(clearStartButton)
+
+    endSoundPlayed1 = false
 }
 
 //-----------------------draws th game and its functions-------------/
@@ -126,7 +128,11 @@ function drawGame1()
             text('Congratulations! You have completed the game!', 200, 200 )
             text('Play Again?', 350, 215)
             restart.show(clearRestartButton)
-            posSound3.play()
+            if (!endSoundPlayed1) {
+                posSound3.play()
+                endSoundPlayed1 = true
+            }
+
 
             //highScore1 = highScore
             if(highScore1 == 0)

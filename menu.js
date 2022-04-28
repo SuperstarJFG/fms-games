@@ -80,11 +80,14 @@ function drawMenu() {
   button3.show()
 
   // "Welcome Player!" title
-  textSize(50)
+  textSize(55)
   fill('white')
-  text("Welcome Player!",85,80)  
+  textAlign(CENTER,CENTER)
+  text("Welcome, Player!",275,50+5*cos(millis()/200))
+  textSize(35)
+  text("Pick a Game:",275,120)
 
-  // draw scoreboard background
+  // draw scoreboard outline
   fill('orange')
   stroke('white')
   strokeWeight(10)
@@ -93,8 +96,7 @@ function drawMenu() {
   // draw scoreboard title
   fill('white')
   textSize(32)
-  textAlign(CENTER,CENTER)
-  text('High Scores',650,105)
+  text('High Scores:',650,105)
   // draw game 1 score bg
   fill('red')
   rect(555,125,190,150)
@@ -104,10 +106,20 @@ function drawMenu() {
   // draw game 3 score bg
   fill('green')
   rect(555,425,190,150)
-  // print scores
+  // print game 1 score
   fill('white')
-  textSize(50)
-  text(highScore1,650,200)
+  textSize(30)
+  if (highScore1 == 0) {
+    textForHighScore1 = `Not Yet\nPlayed`
+  }
+  if (highScore1 == 1) {
+    textForHighScore1 = `Fastest Time:\n1 Second`
+  }
+  if (highScore1 > 1) {
+    textForHighScore1 = `Fastest Time:\n${highScore1} Seconds`
+  }
+  text(textForHighScore1,650,200)
+  // print game 2 score
   textSize(30)
   if (highScore2 == 0) {
     textForHighScore2 = `Not Yet\nPlayed`
@@ -119,8 +131,14 @@ function drawMenu() {
     textForHighScore2 = `Fastest Time:\n${highScore2} Seconds`
   }
   text(textForHighScore2,650,350)
-  textSize(50)
-  text(highScore3,650,500)
+  // print game 3 score
+  if (highScore3 == 0) {
+    textForHighScore3 = `Not Yet\nPlayed`
+  }
+  else {
+    textForHighScore3 = `Most Popped:\n${highScore3} Weasels`
+  }
+  text(textForHighScore3,650,500)
   textAlign(LEFT) // resets alignment
 }
 

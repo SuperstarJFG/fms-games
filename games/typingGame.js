@@ -51,7 +51,7 @@ function startGame2() {
     done2 = false // is player on game 2 end screen
     newHighScore2 = false // did player just get new high score on game 2
     playAgainButton2.hide()
-    endSoundPlayed = false
+    endSoundPlayed2 = false
     frames2 = 0 // resets animation frames
     
     score2 = 0 // resets timer
@@ -283,9 +283,9 @@ function drawGame2() {
             storyCompleteText = 'NEW FASTEST TIME!'
             endSound = posSound3
         }
-        if (!endSoundPlayed) {
+        if (!endSoundPlayed2) {
             endSound.play()
-            endSoundPlayed = true
+            endSoundPlayed2 = true
         }
     }
     text(storyCompleteText,400,470+9*cos(millis()/200))

@@ -96,8 +96,8 @@ function weaselImage(x,y){
     image(img, x-65, y-100, img.width / 9, img.height / 9);
     
 }
-function weaselCLick(){
-    if(timer3 != 0){
+function weaselClick(){
+    if(timer3 != 0 && game3){
         w = Math.ceil(Math.random()*11)
         score3++
         posSound.play()
@@ -106,37 +106,37 @@ function weaselCLick(){
 
 function mousePressed(){
     if((w==1) && (dist(mouseX,mouseY,150,290)<150)){
-        weaselCLick()
+        weaselClick()
     }
     if((w==2) && (dist(mouseX,mouseY,330,290) <150)){
-        weaselCLick()
+        weaselClick()
     }
     if((w==3) && (dist(mouseX,mouseY,480,290)<150)){
-        weaselCLick()
+        weaselClick()
     }
     if((w==4) && (dist(mouseX,mouseY,620,290)<150)){
-        weaselCLick()
+        weaselClick()
     }
     if((w==5) && (dist(mouseX,mouseY,230,390)<150)){
-        weaselCLick()
+        weaselClick()
     }
     if((w==6) && (dist(mouseX,mouseY,400,390)<150)){
-        weaselCLick()
+        weaselClick()
     }
     if((w==7) && (dist(mouseX,mouseY,560,390)<150)){
-        weaselCLick()
+        weaselClick()
     }
     if((w==8) && (dist(mouseX,mouseY,150,490)<150)){
-        weaselCLick()
+        weaselClick()
     }
     if((w==9) && (dist(mouseX,mouseY,330,490)<150)){
-        weaselCLick()
+        weaselClick()
     }
     if((w==10) && (dist(mouseX,mouseY,480,490)<150)){
-        weaselCLick()
+        weaselClick()
     }
     if((w==11) && (dist(mouseX,mouseY,620,490)<150)){
-        weaselCLick()
+        weaselClick()
     }
 }
 
