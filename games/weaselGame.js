@@ -95,6 +95,10 @@ function drawGame3() {
     if(score3 > highScore3 && timer3 == 0){
         highScore3 = score3
     }
+
+    // print instructions
+    fill('white')
+    text('click as many weasels as you can in 20 seconds!',200,150)
 }
 //weasel image
 function weaselImage(x,y){
@@ -110,37 +114,38 @@ function weaselClick(){
 }
 
 function mousePressed(){
-    if((w==1) && (dist(mouseX,mouseY,150,290)<150)){
+    dist3 = 85
+    if((w==1) && (dist(mouseX,mouseY,150,290)<dist3)){
         weaselClick()
     }
-    if((w==2) && (dist(mouseX,mouseY,330,290) <150)){
+    if((w==2) && (dist(mouseX,mouseY,330,290)<dist3)){
         weaselClick()
     }
-    if((w==3) && (dist(mouseX,mouseY,480,290)<150)){
+    if((w==3) && (dist(mouseX,mouseY,480,290)<dist3)){
         weaselClick()
     }
-    if((w==4) && (dist(mouseX,mouseY,620,290)<150)){
+    if((w==4) && (dist(mouseX,mouseY,620,290)<dist3)){
         weaselClick()
     }
-    if((w==5) && (dist(mouseX,mouseY,230,390)<150)){
+    if((w==5) && (dist(mouseX,mouseY,230,390)<dist3)){
         weaselClick()
     }
-    if((w==6) && (dist(mouseX,mouseY,400,390)<150)){
+    if((w==6) && (dist(mouseX,mouseY,400,390)<dist3)){
         weaselClick()
     }
-    if((w==7) && (dist(mouseX,mouseY,560,390)<150)){
+    if((w==7) && (dist(mouseX,mouseY,560,390)<dist3)){
         weaselClick()
     }
-    if((w==8) && (dist(mouseX,mouseY,150,490)<150)){
+    if((w==8) && (dist(mouseX,mouseY,150,490)<dist3)){
         weaselClick()
     }
-    if((w==9) && (dist(mouseX,mouseY,330,490)<150)){
+    if((w==9) && (dist(mouseX,mouseY,330,490)<dist3)){
         weaselClick()
     }
-    if((w==10) && (dist(mouseX,mouseY,480,490)<150)){
+    if((w==10) && (dist(mouseX,mouseY,480,490)<dist3)){
         weaselClick()
     }
-    if((w==11) && (dist(mouseX,mouseY,620,490)<150)){
+    if((w==11) && (dist(mouseX,mouseY,620,490)<dist3)){
         weaselClick()
     }
 }
