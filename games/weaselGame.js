@@ -114,7 +114,7 @@ function weaselClick(){
 }
 
 function mousePressed(){
-    dist3 = 85
+    dist3 = 85 // how close mouse needs to be for weasel click to register 
     if((w==1) && (dist(mouseX,mouseY,150,290)<dist3)){
         weaselClick()
     }
